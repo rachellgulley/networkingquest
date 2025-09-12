@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Quest - $1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.02em;
+        }
+        
+        .subtitle {
+            font-size: 1.3em;
+            font-weight: 500;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            color: #fef3c7;
+        }
+        
+        .story-box {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .story-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #fef3c7;
+            font-style: italic;
+        }
+        
+        .card {
+            background: white;
+            color: #2d3748;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            margin: 30px 0;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .card h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #1a202c;
+            letter-spacing: -0.01em;
+        }
+        
+        .card p {
+            font-size: 1.1em;
+            color: #4a5568;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 220px;
+            padding: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 15px;
+            box-sizing: border-box;
+            margin-bottom: 25px;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #fbbf24;
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+        
+        textarea::placeholder {
+            color: #a0aec0;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #1e3a8a;
+            border: none;
+            padding: 18px 36px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 24px rgba(251, 191, 36, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(251, 191, 36, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .preview-results {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .preview-results h3 {
+            font-size: 1.6em;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 20px;
+        }
+        
+        .linkedin-link {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 16px;
+            margin: 12px 0;
+            border-radius: 12px;
+            border-left: 4px solid #0077b5;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+        
+        .linkedin-link:hover {
+            transform: translateX(4px);
+        }
+        
+        .linkedin-link strong {
+            color: #2d3748;
+            font-weight: 600;
+        }
+        
+        .linkedin-link a {
+            color: #0077b5;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .linkedin-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .unlock-section {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 30px;
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 2px solid #fbbf24;
+            text-align: center;
+        }
+        
+        .unlock-section h3 {
+            color: #1a202c;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .unlock-section p {
+            color: #4a5568;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+        
+        .price-highlight {
+            font-size: 2em;
+            font-weight: 700;
+            color: #f59e0b;
+            margin: 15px 0;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Networking Quest</h1>
+        <p class="subtitle">Turn webinar chat chaos into networking gold - $1</p>
+        
+        <!-- Origin Story -->
+        <div class="story-box">
+            <div class="story-text">
+                "I got annoyed spending 10 minutes manually organizing LinkedIn URLs from a webinar chat, so I took a side quest to build the $1 solution I wished existed. 73 days into building my company from scratch - this is how problems become products! 🎒"
+            </div>
+        </div>
+        
+        <!-- Try It Section -->
+        <div class="card">
+            <h2>✨ See It In Action</h2>
+            <p>Paste your webinar chat below to see a preview - you'll see the first few results, then pay $1 to unlock everything!</p>
+            
+            <textarea id="chatInput" placeholder="Paste your webinar chat here...
+
+Example:
+John Smith: Great presentation! Here's my LinkedIn: https://linkedin.com/in/johnsmith
+Sarah Johnson: Thanks! Mine is linkedin.com/in/sarahjohnson
+Mike Davis: Connect with me: https://www.linkedin.com/in/mikedavis
+
+...and so on"></textarea>
+            
+            <button onclick="showPreview()">🔍 Show Preview (Free)</button>
+            
+            <!-- Preview Results -->
+            <div id="previewResults" class="preview-results hidden">
+                <h3>📋 Preview - Here's what we found:</h3>
+                <div id="previewList"></div>
+                
+                <!-- Unlock Section -->
+                <div class="unlock-section">
+                    <h3>🚀 Unlock All Your Connections</h3>
+                    <p id="unlockText">Ready to get your complete, organized networking list?</p>
+                    <div class="price-highlight">$1</div>
+                    <button onclick="processPayment()" style="font-size: 20px; padding: 20px 40px;">
+                        💳 Pay $1 & Download Complete List
+                    </button>
+                    <div style="margin-top: 15px; font-size: 14px; color: #718096;">
+                        ✨ Instant download after payment • 💌 Get a delightful thank you email • 🎉 Support the side quest!
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Success Section (hidden initially) -->
+        <div class="card hidden" id="successSection">
+            <h2>🎉 Quest Complete!</h2>
+            <p>Your networking gold is ready! Check your email for the complete list and some networking tips.</p>
+            
+            <div id="fullResults">
+                <h3>Your Complete LinkedIn Connections:</h3>
+                <div id="fullResultsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Initialize Stripe with your test key
+        const stripe = Stripe('pk_test_51S6IUzJk59QARP8ASJw57x2tCUZevw6SXNdFopx4vnopCBQfwWLSyH5CvEwlcOXaMa6nJTbmhFkExTTrXehTLvQX00KwrIKKUl');
+        
+        let extractedLinks = [];
+        
+        function showPreview() {
+            const chatText = document.getElementById('chatInput').value;
+            
+            if (!chatText.trim()) {
+                alert('Please paste your webinar chat first!');
+                return;
+            }
+            
+            // Extract LinkedIn URLs
+            extractedLinks = extractLinkedInURLs(chatText);
+            
+            if (extractedLinks.length === 0) {
+                alert('No LinkedIn URLs found! Make sure your chat contains LinkedIn profile links.');
+                return;
+            }
+            
+            // Show preview (first 3 results)
+            displayPreview(extractedLinks);
+        }
+        
+        function extractLinkedInURLs(chatText) {
+            // Regular expression to find LinkedIn URLs
+            const linkedinRegex = /https?:\/\/(www\.)?linkedin\.com\/in\/[\w\-]+\/?/gi;
+            const linkedinRegex2 = /linkedin\.com\/in\/[\w\-]+\/?/gi;
+            
+            let allLinks = [];
+            
+            // Find all matches
+            const matches1 = chatText.match(linkedinRegex) || [];
+            const matches2 = chatText.match(linkedinRegex2) || [];
+            
+            // Combine and normalize URLs
+            allLinks = [...matches1, ...matches2.map(link => 
+                link.startsWith('http') ? link : 'https://' + link
+            )];
+            
+            // Remove duplicates
+            const uniqueLinks = [...new Set(allLinks)];
+            
+            return uniqueLinks.map((link, index) => ({
+                url: link,
+                username: link.split('/in/')[1]?.replace('/', '') || `Profile-${index + 1}`
+            }));
+        }
+        
+        function displayPreview(links) {
+            const previewDiv = document.getElementById('previewResults');
+            const previewListDiv = document.getElementById('previewList');
+            const unlockText = document.getElementById('unlockText');
+            
+            // Show first 3 results
+            const previewCount = Math.min(3, links.length);
+            const previewLinks = links.slice(0, previewCount);
+            
+            previewListDiv.innerHTML = '';
+            previewLinks.forEach((link, index) => {
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'linkedin-link';
+                linkDiv.innerHTML = `
+                    <strong>Profile ${index + 1}:</strong> ${link.username}<br>
+                    <a href="${link.url}" target="_blank">${link.url}</a>
+                `;
+                previewListDiv.appendChild(linkDiv);
+            });
+            
+            // Update unlock text
+            if (links.length > previewCount) {
+                unlockText.textContent = `You have ${links.length - previewCount} more connections waiting! Pay $1 to get your complete organized list.`;
+            } else {
+                unlockText.textContent = `Get your complete organized list for just $1!`;
+            }
+            
+            previewDiv.classList.remove('hidden');
+            previewDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        async function processPayment() {
+            try {
+                // Debug: Check if we have extracted links
+                console.log('Extracted links:', extractedLinks);
+                
+                if (!extractedLinks || extractedLinks.length === 0) {
+                    alert('Please show preview first before paying!');
+                    return;
+                }
+                
+                // Store the extracted links in localStorage
+                localStorage.setItem('webinarNetworkingLinks', JSON.stringify(extractedLinks));
+                console.log('Stored links in localStorage');
+                
+                // Just alert for now to test
+                const confirmed = confirm(`Ready to pay $1 for ${extractedLinks.length} connections? Click OK to open Stripe payment page.`);
+                
+                if (confirmed) {
+                    console.log('User confirmed, redirecting...');
+                    // Redirect to Stripe payment link
+                    window.location.href = 'https://buy.stripe.com/test_bJe3cwe1z1dC77k3S6cfK00';
+                }
+                
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('Error details: ' + error.message);
+            }
+        }
+        
+        // Check if user just completed payment
+        function checkPaymentStatus() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Check if coming back from successful payment
+            if (urlParams.get('success') === 'true' || window.location.href.includes('success')) {
+                // Get stored links
+                const storedLinks = localStorage.getItem('webinarNetworkingLinks');
+                if (storedLinks) {
+                    extractedLinks = JSON.parse(storedLinks);
+                    showSuccessSection();
+                    // Clear stored data
+                    localStorage.removeItem('webinarNetworkingLinks');
+                } else {
+                    alert('Please start over by pasting your chat again!');
+                }
+                
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+                
+            } else if (urlParams.get('canceled') === 'true') {
+                alert("Payment canceled. No worries - your preview is still here when you're ready!");
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+        
+        function showSuccessSection() {
+            // Hide other sections
+            document.getElementById('previewResults').classList.add('hidden');
+            
+            // Show success section
+            const successSection = document.getElementById('successSection');
+            successSection.classList.remove('hidden');
+            
+            // Show confetti
+            showConfetti();
+            
+            // Display all results
+            const fullResultsList = document.getElementById('fullResultsList');
+            fullResultsList.innerHTML = '';
+            
+            extractedLinks.forEach((link, index) => {
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'linkedin-link';
+                linkDiv.innerHTML = `
+                    <strong>Profile ${index + 1}:</strong> ${link.username}<br>
+                    <a href="${link.url}" target="_blank">${link.url}</a>
+                `;
+                fullResultsList.appendChild(linkDiv);
+            });
+            
+            successSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Show success message
+            setTimeout(() => {
+                alert(`🎉 Quest complete! Found ${extractedLinks.length} LinkedIn profiles. Check your email for networking tips!`);
+            }, 1000);
+        }
+        
+        function showConfetti() {
+            // Simple confetti effect
+            const confetti = document.createElement('div');
+            confetti.innerHTML = '🎉🎊✨🎉🎊✨🎉🎊✨';
+            confetti.style.position = 'fixed';
+            confetti.style.top = '20%';
+            confetti.style.left = '50%';
+            confetti.style.transform = 'translateX(-50%)';
+            confetti.style.fontSize = '2em';
+            confetti.style.zIndex = '1000';
+            confetti.style.animation = 'confetti 2s ease-out';
+            
+            // Add confetti animation CSS
+            if (!document.getElementById('confetti-style')) {
+                const style = document.createElement('style');
+                style.id = 'confetti-style';
+                style.textContent = `
+                    @keyframes confetti {
+                        0% { transform: translateX(-50%) translateY(-20px) scale(0); opacity: 0; }
+                        50% { transform: translateX(-50%) translateY(-50px) scale(1.2); opacity: 1; }
+                        100% { transform: translateX(-50%) translateY(-100px) scale(0.8); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, 2000);
+        }
+        
+        // Check payment status when page loads
+        window.addEventListener('load', checkPaymentStatus);
+    </script>
+</body>
+</html>

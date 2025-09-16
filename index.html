@@ -360,14 +360,9 @@ Mike Davis: Connect with me: https://www.linkedin.com/in/mikedavis
                 localStorage.setItem('webinarNetworkingLinks', JSON.stringify(extractedLinks));
                 console.log('Stored links in localStorage');
                 
-                // Just alert for now to test
-                const confirmed = confirm(`Ready to pay $1 for ${extractedLinks.length} connections? Click OK to open Stripe payment page.`);
-                
-                if (confirmed) {
-                    console.log('User confirmed, redirecting...');
-                    // Redirect to Stripe payment link
-                   window.location.href = 'https://buy.stripe.com/fZufZj93m8RmdE42pkd7q00';
-                }
+                console.log('User confirmed, redirecting...');
+// Redirect to Stripe payment link
+window.location.href = 'https://buy.stripe.com/fZufZj93m8RmdE42pkd7q00';
                 
             } catch (error) {
                 console.error('Payment error:', error);

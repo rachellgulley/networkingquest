@@ -567,8 +567,9 @@ function downloadCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-        
-        function showConfetti() {
+}  // <-- ADD THIS CLOSING BRACE
+
+function showConfetti() {
             // Simple confetti effect
             const confetti = document.createElement('div');
             confetti.innerHTML = '🎉🎊✨🎉🎊✨🎉🎊✨';

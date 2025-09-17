@@ -567,12 +567,6 @@ function downloadCSV() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // Show a success message
-    setTimeout(() => {
-        alert('📥 CSV downloaded! Check your downloads folder for ' + filename);
-    }, 500);
-}
         
         function showConfetti() {
             // Simple confetti effect

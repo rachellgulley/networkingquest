@@ -450,38 +450,86 @@ Jordan Quest: Great webinar! https://linkedin.com/in/jordanquest
             }
         }
         
-        function showSuccessSection() {
-            // Hide other sections
-            document.getElementById('previewResults').classList.add('hidden');
-            
-            // Show success section
-            const successSection = document.getElementById('successSection');
-            successSection.classList.remove('hidden');
-            
-            // Show confetti
-            showConfetti();
-            
-            // Display all results
-            const fullResultsList = document.getElementById('fullResultsList');
-            fullResultsList.innerHTML = '';
-            
-            extractedLinks.forEach((link, index) => {
-                const linkDiv = document.createElement('div');
-                linkDiv.className = 'linkedin-link';
-                linkDiv.innerHTML = `
-                    <strong>Profile ${index + 1}:</strong> ${link.username}<br>
-                    <a href="${link.url}" target="_blank">${link.url}</a>
-                `;
-                fullResultsList.appendChild(linkDiv);
-            });
-            
-            successSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Show success message
-            setTimeout(() => {
-                alert(`🎉 Quest complete! Found ${extractedLinks.length} LinkedIn profiles ready for networking!`);
-            }, 1000);
-        }
+   function showSuccessSection() {
+    // Hide other sections
+    document.getElementById('previewResults').classList.add('hidden');
+    
+    // Show success section
+    const successSection = document.getElementById('successSection');
+    successSection.classList.remove('hidden');
+    
+    // Show confetti
+    showConfetti();
+    
+    // Create CSV content
+    const csvContent = createCSV(extractedLinks);
+    
+    // Update the success section HTML to show download button instead of list
+    document.getElementById('fullResults').innerHTML = `
+        <h3>🎉 Your Complete LinkedIn Connections:</h3>
+        <p style="color: #475569; margin: 20px 0;">Found <strong>${extractedLinks.length}</strong> LinkedIn profiles from your webinar!</p>
+        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; margin: 20px 0;">
+            <p style="color: #0f172a; font-size: 1.1em; margin-bottom: 20px;">Your networking list is ready for download as a CSV file that you can:</p>
+            <ul style="text-align: left; color: #475569; line-height: 1.8; margin-bottom: 25px;">
+                <li>Open in Excel, Google Sheets, or any spreadsheet app</li>
+                <li>Use for mail merge or CRM import</li>
+                <li>Track your networking follow-ups</li>
+            </ul>
+            <button onclick="downloadCSV()" style="background: #00d4ff; color: #000; border: 2px solid #00d4ff; padding: 20px 40px; font-size: 18px; font-weight: 700; border-radius: 12px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+                📥 Download CSV File
+            </button>
+        </div>
+        <div style="margin-top: 20px; padding: 20px; background: #f1f5f9; border-radius: 12px;">
+            <p style="color: #64748b; font-size: 0.95em;">
+                💡 <strong>Pro tip:</strong> Import this CSV into your CRM or use it to track your follow-ups. 
+                Each row includes the username and direct LinkedIn URL. Use the Notes column to track your outreach status!
+            </p>
+        </div>
+    `;
+    
+    successSection.scrollIntoView({ behavior: 'smooth' });
+}
+        function createCSV(links) {
+    // Create CSV header
+    let csv = 'Name/Username,LinkedIn URL,Notes\n';
+    
+    // Add each link as a row
+    links.forEach((link) => {
+        // Escape any commas in the data
+        const username = link.username.replace(/,/g, ';');
+        const url = link.url;
+        
+        csv += `"${username}","${url}",""\n`;
+    });
+    
+    return csv;
+}
+
+function downloadCSV() {
+    const csvContent = createCSV(extractedLinks);
+    
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    // Generate filename with today's date
+    const today = new Date().toISOString().split('T')[0];
+    const filename = `webinar-networking-${today}.csv`;
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show a success message
+    setTimeout(() => {
+        alert('📥 CSV downloaded! Check your downloads folder for ' + filename);
+    }, 500);
+}
         
         function showConfetti() {
             // Simple confetti effect

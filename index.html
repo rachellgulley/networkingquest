@@ -228,6 +228,73 @@
         .hidden {
             display: none;
         }
+        /* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 10px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+    
+    .subtitle {
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+    
+    .card {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .card h2 {
+        font-size: 1.6em;
+    }
+    
+    textarea {
+        height: 180px;
+        padding: 16px;
+        font-size: 14px;
+    }
+    
+    button {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+    
+    .story-box {
+        padding: 20px;
+    }
+    
+    .unlock-section {
+        padding: 25px 20px;
+    }
+    
+    .unlock-section h3 {
+        font-size: 1.4em;
+    }
+    
+    .price-highlight {
+        font-size: 2em;
+    }
+    
+    /* Fix table preview for mobile */
+    table {
+        font-size: 12px;
+    }
+    
+    th, td {
+        padding: 8px !important;
+    }
+    
+    /* Hide LinkedIn URL column on very small screens */
+    @media (max-width: 480px) {
+        th:nth-child(2), td:nth-child(2) {
+            display: none;
+        }
+    }
+}
     </style>
 </head>
 <body>

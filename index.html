@@ -270,9 +270,9 @@ Jordan Quest: Great webinar! https://linkedin.com/in/jordanquest
                 
                 <!-- Unlock Section -->
                 <div class="unlock-section">
-                    <h3>🚀 Unlock All Your Connections</h3>
+                    <h3>Unlock All Your Connections</h3>
                     <p id="unlockText">Ready to get your complete, organized networking list?</p>
-                    <div class="price-highlight">$1</div>
+                    <div class="price-highlight">🔑</div>
                     <button onclick="processPayment()" style="font-size: 20px; padding: 20px 40px;">
                         💳 Pay $1 & Download Complete List
                     </button>
@@ -394,11 +394,11 @@ Jordan Quest: Great webinar! https://linkedin.com/in/jordanquest
             });
             
             // Update unlock text
-            if (links.length > previewCount) {
-                unlockText.textContent = `You have ${links.length - previewCount} more connections waiting! Pay $1 to get your complete organized list.`;
-            } else {
-                unlockText.textContent = `Get your complete organized list for just $1!`;
-            }
+   if (links.length > previewCount) {
+    unlockText.textContent = `You have ${links.length - previewCount} more connections are waiting! Get your complete organized list in a downloadable CSV file.`;
+} else {
+    unlockText.textContent = `Get your complete organized list in a downloadable CSV file!`;
+}
             
             previewDiv.classList.remove('hidden');
             previewDiv.scrollIntoView({ behavior: 'smooth' });

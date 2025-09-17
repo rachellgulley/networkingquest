@@ -335,6 +335,9 @@ Jordan Quest: Great webinar! https://linkedin.com/in/jordanquest
             
             // Extract LinkedIn URLs
             extractedLinks = extractLinkedInURLs(chatText);
+            // DEBUG: Let's see what we're finding
+console.log('Total links found:', extractedLinks.length);
+console.log('Links:', extractedLinks);
             
             if (extractedLinks.length === 0) {
                 alert('No LinkedIn URLs found! Make sure your chat contains LinkedIn profile links.');

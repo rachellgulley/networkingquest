@@ -378,36 +378,74 @@ console.log('Links:', extractedLinks);
     }));
 }
         
-        function displayPreview(links) {
-            const previewDiv = document.getElementById('previewResults');
-            const previewListDiv = document.getElementById('previewList');
-            const unlockText = document.getElementById('unlockText');
-            
-            // Show first 3 results
-            const previewCount = Math.min(3, links.length);
-            const previewLinks = links.slice(0, previewCount);
-            
-            previewListDiv.innerHTML = '';
-            previewLinks.forEach((link, index) => {
-                const linkDiv = document.createElement('div');
-                linkDiv.className = 'linkedin-link';
-                linkDiv.innerHTML = `
-                    <strong>Profile ${index + 1}:</strong> ${link.username}<br>
-                    <a href="${link.url}" target="_blank">${link.url}</a>
-                `;
-                previewListDiv.appendChild(linkDiv);
-            });
-            
-            // Update unlock text
-            if (links.length > previewCount) {
-                unlockText.textContent = `You have ${links.length - previewCount} more profiles waiting! Get your complete organized list in a downloadable CSV file.`;
-            } else {
-                unlockText.textContent = `Get your complete organized list in a downloadable CSV file!`;
-            }
-            
-            previewDiv.classList.remove('hidden');
-            previewDiv.scrollIntoView({ behavior: 'smooth' });
+       function displayPreview(links) {
+    const previewDiv = document.getElementById('previewResults');
+    const previewListDiv = document.getElementById('previewList');
+    const unlockText = document.getElementById('unlockText');
+    
+    // Show first 3 results
+    const previewCount = Math.min(3, links.length);
+    const previewLinks = links.slice(0, previewCount);
+    
+    // Create table preview
+    let tableHTML = `
+        <div style="background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+            <div style="background: #f8fafc; padding: 10px 15px; border-bottom: 1px solid #e2e8f0;">
+                <span style="color: #64748b; font-size: 0.9em;">📊 webinar-networking-${new Date().toISOString().split('T')[0]}.csv</span>
+            </div>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: #f1f5f9;">
+                        <th style="padding: 12px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Name/Username</th>
+                        <th style="padding: 12px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">LinkedIn URL</th>
+                        <th style="padding: 12px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0;">Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+    
+    // Add preview rows
+    previewLinks.forEach((link, index) => {
+        tableHTML += `
+            <tr style="border-bottom: 1px solid #f1f5f9;">
+                <td style="padding: 12px; color: #1e293b;">${link.username}</td>
+                <td style="padding: 12px;"><a href="${link.url}" target="_blank" style="color: #0284c7; text-decoration: none;">${link.url}</a></td>
+                <td style="padding: 12px; color: #94a3b8; font-style: italic;">Click to add notes...</td>
+            </tr>
+        `;
+    });
+    
+    // Add blurred rows if there are more results
+    if (links.length > previewCount) {
+        for (let i = 0; i < Math.min(2, links.length - previewCount); i++) {
+            tableHTML += `
+                <tr style="border-bottom: 1px solid #f1f5f9; opacity: 0.3; filter: blur(2px);">
+                    <td style="padding: 12px; color: #cbd5e1;">••••••••</td>
+                    <td style="padding: 12px; color: #cbd5e1;">linkedin.com/in/••••••••</td>
+                    <td style="padding: 12px; color: #cbd5e1;">••••••••</td>
+                </tr>
+            `;
         }
+    }
+    
+    tableHTML += `
+                </tbody>
+            </table>
+        </div>
+    `;
+    
+    previewListDiv.innerHTML = tableHTML;
+    
+    // Update unlock text
+    if (links.length > previewCount) {
+        unlockText.textContent = `You have ${links.length - previewCount} more profiles waiting! Get your complete organized list in a downloadable CSV file.`;
+    } else {
+        unlockText.textContent = `Get your complete organized list in a downloadable CSV file!`;
+    }
+    
+    previewDiv.classList.remove('hidden');
+    previewDiv.scrollIntoView({ behavior: 'smooth' });
+}
         
         async function processPayment() {
             try {

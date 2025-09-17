@@ -349,29 +349,33 @@ console.log('Links:', extractedLinks);
         }
         
         function extractLinkedInURLs(chatText) {
-            // Regular expression to find LinkedIn URLs
-            const linkedinRegex = /https?:\/\/(www\.)?linkedin\.com\/in\/[\w\-]+\/?/gi;
-            const linkedinRegex2 = /linkedin\.com\/in\/[\w\-]+\/?/gi;
-            
-            let allLinks = [];
-            
-            // Find all matches
-            const matches1 = chatText.match(linkedinRegex) || [];
-            const matches2 = chatText.match(linkedinRegex2) || [];
-            
-            // Combine and normalize URLs
-            allLinks = [...matches1, ...matches2.map(link => 
-                link.startsWith('http') ? link : 'https://' + link
-            )];
-            
-            // Remove duplicates
-            const uniqueLinks = [...new Set(allLinks)];
-            
-            return uniqueLinks.map((link, index) => ({
-                url: link,
-                username: link.split('/in/')[1]?.replace('/', '') || `Profile-${index + 1}`
-            }));
+    // More precise regex that won't double-match
+    const linkedinRegex = /(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/[\w\-]+\/?/gi;
+    
+    // Find all matches
+    const matches = chatText.match(linkedinRegex) || [];
+    
+    // Normalize URLs (add https:// if missing, remove trailing slash)
+    const normalizedLinks = matches.map(link => {
+        let normalized = link;
+        if (!normalized.startsWith('http')) {
+            normalized = 'https://' + normalized;
         }
+        // Remove trailing slash for consistency
+        normalized = normalized.replace(/\/$/, '');
+        return normalized.toLowerCase(); // lowercase for better deduplication
+    });
+    
+    // Remove duplicates using Set
+    const uniqueLinks = [...new Set(normalizedLinks)];
+    
+    console.log('DEBUG - Total unique links found:', uniqueLinks.length); // Debug line
+    
+    return uniqueLinks.map((link, index) => ({
+        url: link.replace('https://', 'https://'), // restore proper casing for https
+        username: link.split('/in/')[1] || `Profile-${index + 1}`
+    }));
+}
         
         function displayPreview(links) {
             const previewDiv = document.getElementById('previewResults');

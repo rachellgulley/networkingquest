@@ -513,26 +513,22 @@ console.log('Links:', extractedLinks);
     
     // Update the success section HTML to show download button instead of list
     document.getElementById('fullResults').innerHTML = `
-        <h3>🎉 Your Complete LinkedIn Connections:</h3>
-        <p style="color: #475569; margin: 20px 0;">Found <strong>${extractedLinks.length}</strong> LinkedIn profiles from your webinar!</p>
-        <div style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); padding: 30px; border-radius: 16px; margin: 20px 0;">
-            <p style="color: #0f172a; font-size: 1.1em; margin-bottom: 20px;">Your networking list is ready for download as a CSV file that you can:</p>
-            <ul style="text-align: left; color: #475569; line-height: 1.8; margin-bottom: 25px;">
-                <li>Open in Excel, Google Sheets, or any spreadsheet app</li>
-                <li>Use for mail merge or CRM import</li>
-                <li>Track your networking follow-ups</li>
-            </ul>
-            <button onclick="downloadCSV()" style="background: #00d4ff; color: #000; border: 2px solid #00d4ff; padding: 20px 40px; font-size: 18px; font-weight: 700; border-radius: 12px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
-                📥 Download CSV File
-            </button>
-        </div>
-        <div style="margin-top: 20px; padding: 20px; background: #f1f5f9; border-radius: 12px;">
-            <p style="color: #64748b; font-size: 0.95em;">
-                💡 <strong>Pro tip:</strong> Import this CSV into your CRM or use it to track your follow-ups. 
-                Each row includes the username and direct LinkedIn URL. Use the Notes column to track your outreach status!
-            </p>
-        </div>
-    `;
+    <div style="text-align: center;">
+        <h2 style="font-size: 2.5em; margin-bottom: 20px;">🎉 Quest Complete!</h2>
+        <p style="color: #475569; font-size: 1.2em; margin-bottom: 10px;">Your networking gold is ready!</p>
+        
+        <h3 style="font-size: 1.6em; margin: 30px 0 10px;">Found ${extractedLinks.length} LinkedIn profiles!</h3>
+        <p style="color: #475569; font-size: 1.1em; margin-bottom: 30px;">Your networking CSV is ready to download.</p>
+        
+        <button onclick="downloadCSV()" style="background: #00d4ff; color: #000; border: 2px solid #00d4ff; padding: 20px 40px; font-size: 18px; font-weight: 700; border-radius: 12px; cursor: pointer; font-family: 'Space Grotesk', sans-serif; text-transform: uppercase; letter-spacing: 1px;">
+            📥 Download CSV File
+        </button>
+        
+        <p style="color: #64748b; font-size: 0.95em; margin-top: 30px;">
+            <strong>Pro tip:</strong> Use the Notes column to track your outreach status!
+        </p>
+    </div>
+`;
     
     successSection.scrollIntoView({ behavior: 'smooth' });
 }
